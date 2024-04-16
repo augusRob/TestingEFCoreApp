@@ -27,7 +27,7 @@ namespace RepositoryTests
 
             var expectedMateriaDTO = expectedMateria.ToDTO();
 
-            var materiaController = new MateriasController(_materiaRepositoryMock.Object);
+            var materiaController = new MateriasControllerWithRepository(_materiaRepositoryMock.Object);
 
             // Act
             var resultado = materiaController.GetMateriaById(1);

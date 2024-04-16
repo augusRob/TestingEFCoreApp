@@ -7,11 +7,11 @@ namespace TestingEFCoreApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MateriasController : ControllerBase
+    public class MateriasControllerWithRepository : ControllerBase
     {
         private readonly IMateriaRepository _materiaRepository;
 
-        public MateriasController(IMateriaRepository materiaRepository)
+        public MateriasControllerWithRepository(IMateriaRepository materiaRepository)
         {
             _materiaRepository = materiaRepository;
         }
