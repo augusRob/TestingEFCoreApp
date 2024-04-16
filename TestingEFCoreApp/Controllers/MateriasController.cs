@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TestingEFCoreApp.Models;
 using TestingEFCoreApp.Repositories;
 
 namespace TestingEFCoreApp.Controllers
@@ -16,12 +17,14 @@ namespace TestingEFCoreApp.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetMaterias()
+        public ActionResult<List<MateriaDTO>> GetMaterias()
         {
             try
             {
-                var materias = await _materiaRepository.GetAllAsync();
-                return Ok(materias);
+                var materias = _materiaRepository.GetAll();
+                var materiasDTO = materias.Select(m => m.ToDTO()).ToList();
+
+                return Ok(materiasDTO);
             }
             catch (Exception ex)
             {
@@ -30,16 +33,17 @@ namespace TestingEFCoreApp.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult> GetMateriaById(int id)
+        public ActionResult<MateriaDTO> GetMateriaById(int id)
         {
             try
             {
-                var materia = await _materiaRepository.GetByIdAsync(id);
+                var materia = _materiaRepository.GetById(id);
                 if (materia == null)
                 {
                     return NotFound();
                 }
-                return Ok(materia);
+                
+                return Ok(materia.ToDTO());  
             }
             catch (Exception ex)
             {
@@ -47,5 +51,7 @@ namespace TestingEFCoreApp.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+
     }
 }

@@ -4,7 +4,7 @@ using TestingEFCoreApp.Data;
 
 namespace TestingEFCoreApp.Repositories
 {
-    public abstract class BaseRepository<T> : IRepository<T> where T : class
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
     {
         private readonly EFCoreAppContext _appContext;
 
@@ -13,38 +13,38 @@ namespace TestingEFCoreApp.Repositories
             _appContext = appContext;
         }
 
-        public virtual async Task<IEnumerable<T>> GetAllAsync()
+        public virtual IEnumerable<T> GetAll()
         {
-            return await _appContext.Set<T>().ToListAsync();
+            return _appContext.Set<T>();
         }
 
-        public virtual async Task<T> GetByIdAsync(int id)
+        public virtual T GetById(int id)
         {
-            return await _appContext.Set<T>().FindAsync(id);
+            return _appContext.Set<T>().Find(id);
         }
 
-        public virtual async Task AddAsync(T entity)
+        public virtual void Add(T entity)
         {
-            await _appContext.Set<T>().AddAsync(entity);
-            await _appContext.SaveChangesAsync();
+            _appContext.Set<T>().Add(entity);
+            _appContext.SaveChanges();
         }
 
-        public virtual async Task UpdateAsync(T entity)
+        public virtual void Update(T entity)
         {
             _appContext.Entry(entity).State = EntityState.Modified;
-            await _appContext.SaveChangesAsync();
+            _appContext.SaveChanges();
         }
 
-        public virtual async Task DeleteAsync(int id)
+        public virtual void Delete(int id)
         {
-            var entity = await _appContext.Set<T>().FindAsync(id);
+            var entity = _appContext.Set<T>().Find(id);
             _appContext.Set<T>().Remove(entity);
-            await _appContext.SaveChangesAsync();
+            _appContext.SaveChanges();
         }
 
-        public virtual async Task<IEnumerable<T>> FindByConditionAsync(Expression<Func<T, bool>> condition)
+        public virtual IEnumerable<T> FindByCondition(Expression<Func<T, bool>> condition)
         {
-            return await _appContext.Set<T>().Where(condition).ToListAsync();
+            return _appContext.Set<T>().Where(condition).ToList();
         }
 
     }

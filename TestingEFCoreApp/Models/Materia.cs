@@ -9,4 +9,18 @@
         public Carrera Carrera { get; set; }
         
     }
+
+    public static class MateriaExtensions
+    {
+        public static MateriaDTO ToDTO(this Materia materia)
+        {
+            return new MateriaDTO()
+            {
+                Id = materia.Id,
+                Nombre = materia.Nombre,
+                Duracion = materia.Duracion,
+                CarreraId = materia.CarreraId
+            };
+        }
+    }
 }

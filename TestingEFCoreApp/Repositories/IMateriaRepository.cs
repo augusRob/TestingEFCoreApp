@@ -2,7 +2,7 @@
 
 namespace TestingEFCoreApp.Repositories
 {
-    public interface IMateriaRepository : IRepository<Materia>
+    public interface IMateriaRepository : IBaseRepository<Materia>
     {
         // Metodos especificos para Materia
     }

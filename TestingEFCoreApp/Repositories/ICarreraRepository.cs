@@ -2,7 +2,7 @@
 
 namespace TestingEFCoreApp.Repositories
 {
-    public interface ICarreraRepository : IRepository<Carrera>
+    public interface ICarreraRepository : IBaseRepository<Carrera>
     {
         // Metodos especificos para Carrera
     }
