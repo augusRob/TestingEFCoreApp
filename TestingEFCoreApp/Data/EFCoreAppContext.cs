@@ -5,6 +5,10 @@ namespace TestingEFCoreApp.Data
 {
     public class EFCoreAppContext : DbContext
     {
+        public EFCoreAppContext()
+        {
+        }
+
         public EFCoreAppContext(DbContextOptions<EFCoreAppContext> options) : base(options) 
         { 
         }
