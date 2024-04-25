@@ -5,6 +5,10 @@ namespace TestingEFCoreApp.Data
 {
     public class EFCoreAppContext : DbContext
     {
+
+        // Es necesario crear un constructor vacio para poder crear instancias del contexto en cada test unitario.
+        // Asi es posible aislar y modularizar las pruebas realizadas.
+
         public EFCoreAppContext()
         {
         }

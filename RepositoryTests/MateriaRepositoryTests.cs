@@ -4,6 +4,11 @@ using TestingEFCoreApp.Controllers;
 using TestingEFCoreApp.Models;
 using TestingEFCoreApp.Repositories;
 
+// Para Testing de la capa de datos mediante patron repositorio utilizamos Moq y xUnit.
+// Se crea un mock de la capa de repositorio de la entidad correspondiente,luego se configura el comportamiento del mock
+// mediante los metodos Setup/Returns de Moq y este repositorio mockeado se utilizará en cada test unitario
+// para ser inyectado en el controlador y así testear la lógica de la capa de datos de nuestra aplicación.
+
 namespace RepositoryTests
 {
     public class MateriaRepositoryTests
@@ -40,7 +45,7 @@ namespace RepositoryTests
             {
                 var resultadoMateria = okObjectResult.Value as MateriaDTO;
 
-                // Assert
+                
                 Assert.NotNull(resultadoMateria);
                 Assert.Equal(expectedMateriaDTO.Nombre, resultadoMateria.Nombre);
                 Assert.Equal(expectedMateriaDTO.Duracion, resultadoMateria.Duracion);

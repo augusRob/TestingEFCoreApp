@@ -4,6 +4,8 @@ using System.Reflection.Metadata;
 using TestingEFCoreApp.Data;
 using TestingEFCoreApp.Models;
 
+// Controlador sin repositorio para poder realizar testing SQLite in memory o con proveedor In-memory de EF Core.
+
 namespace TestingEFCoreApp.Controllers
 {
     [Route("api/[controller]")]

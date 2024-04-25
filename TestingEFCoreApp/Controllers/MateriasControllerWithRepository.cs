@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using TestingEFCoreApp.Models;
 using TestingEFCoreApp.Repositories;
 
+// Controlador con capa de repositorio para poder luego mockear dicha capa y realizar testing sobre ella.
+
 namespace TestingEFCoreApp.Controllers
 {
     [Route("api/[controller]")]
